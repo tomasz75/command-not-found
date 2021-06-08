@@ -24,6 +24,20 @@
 
 using namespace std;
 
+list<string> main_commands = {
+#ifdef __aarch64__
+# include "termux-packages/commands-aarch64-600a3f6.h"
+#elif defined __arm__
+# include "termux-packages/commands-arm-600a3f6.h"
+#elif defined __i686__
+# include "termux-packages/commands-i686-600a3f6.h"
+#elif defined __x86_64__
+# include "termux-packages/commands-x86_64-600a3f6.h"
+#else
+# error Failed to detect arch
+#endif
+};
+
 struct info {string binary, repository;};
 
 /* https://stackoverflow.com/a/12774387 */
